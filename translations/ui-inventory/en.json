@@ -195,5 +195,13 @@
   "itemCallNumber": "Item Call number",
   "holdingsNotes": "Holdings notes",
   "otherRelatedInstances": "Other related instances",
-  "instanceRelationships": "Instance relationships"
+  "instanceRelationships": "Instance relationships",
+  "parentInstances": "Parent  instances",
+  "addParentInstance": "+ Add parent instance",
+  "parentInstance": "Parent instance",
+  "childInstances": "Child  instances",
+  "addChildInstance": "+ Add child instance",
+  "childInstance": "Child instance",
+  "typeOfRelation": "Type of relation",
+  "selectTypeOfRelation": "Select type"
 }

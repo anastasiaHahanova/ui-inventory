@@ -4,7 +4,7 @@ import TextField from '@folio/stripes-components/lib/TextField';
 import Select from '@folio/stripes-components/lib/Select';
 import RepeatableField from '../src/components/RepeatableField';
 
-const ParentInstanceFields = ({ instanceRelationshipTypes }) => {
+const ParentInstanceFields = ({ instanceRelationshipTypes, formatMsg }) => {
   const relationshipOptions = instanceRelationshipTypes.map(
     it => ({
       label: it.name,
@@ -15,20 +15,20 @@ const ParentInstanceFields = ({ instanceRelationshipTypes }) => {
   return (
     <RepeatableField
       name="parentInstances"
-      label="Parent instances"
-      addLabel="+ Add parent instance"
+      label={formatMsg({ id: 'ui-inventory.parentInstances' })}
+      addLabel={formatMsg({ id: 'ui-inventory.addParentInstance' })}
       addButtonId="clickable-add-parentinstance"
       template={[
         {
-          label: 'Parent instance *',
+          label: `${formatMsg({ id: 'ui-inventory.parentInstance' })} *`,
           name: 'superInstanceId',
           component: TextField,
         },
         {
-          label: 'Type of relation *',
+          label: `${formatMsg({ id: 'ui-inventory.typeOfRelation' })} *`,
           name: 'instanceRelationshipTypeId',
           component: Select,
-          dataOptions: [{ label: 'Select type', value: '' }, ...relationshipOptions],
+          dataOptions: [{ label: formatMsg({ id: 'ui-inventory.selectTypeOfRelation' }), value: '' }, ...relationshipOptions],
           required: true,
         },
       ]}
@@ -38,7 +38,7 @@ const ParentInstanceFields = ({ instanceRelationshipTypes }) => {
 };
 
 ParentInstanceFields.propTypes = {
-  instanceRelationshipTypes: PropTypes.arrayOf(PropTypes.object)
+  instanceRelationshipTypes: PropTypes.arrayOf(PropTypes.object),
+  formatMsg: PropTypes.func,
 };
-
 export default ParentInstanceFields;
