@@ -14,6 +14,7 @@ import {
   Headline,
   IconButton,
   AppIcon,
+  MultiColumnList,
 } from '@folio/stripes/components';
 import { ViewMetaData } from '@folio/stripes/smart-components';
 import { craftLayerUrl } from './utils';
@@ -331,7 +332,21 @@ class ViewHoldingsRecord extends React.Component {
               id="accordion07"
               onToggle={this.handleAccordionToggle}
               label={formatMsg({ id: 'ui-inventory.receivingHistory' })}
-            />
+            >
+              { (holdingsRecord.receivingHistory && holdingsRecord.receivingHistory.entries.length > 0) &&
+                <MultiColumnList
+                  id="list-receivinghistory"
+                  contentData={holdingsRecord.receivingHistory.entries}
+                  visibleColumns={['Enumeration', 'Chronology']}
+                  formatter={{
+                    'Enumeration': x => _.get(x, ['enumeration']) || '',
+                    'Chronology': x => _.get(x, ['chronology']) || '',
+                  }}
+                  ariaLabel={formatMsg({ id: 'ui-inventory.receivingHistory' })}
+                  containerRef={(ref) => { this.resultsList = ref; }}
+                />
+              }
+            </Accordion>
           </Pane>
         </Layer>
         <Layer isOpen={query.layer ? (query.layer === 'editHoldingsRecord') : false} label={formatMsg({ id: 'ui-inventory.editHoldingsRecordDialog' })}>

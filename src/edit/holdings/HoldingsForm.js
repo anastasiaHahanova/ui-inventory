@@ -12,6 +12,7 @@ import {
   Button,
   TextField,
   Select,
+  Checkbox,
   ConfirmationModal,
 } from '@folio/stripes/components';
 import {
@@ -22,6 +23,8 @@ import {
 import { Field, FieldArray } from 'redux-form';
 
 import stripesForm from '@folio/stripes/form';
+
+import RepeatableField from '../../components/RepeatableField';
 
 import renderStatements from './holdingsStatementFields';
 
@@ -367,7 +370,30 @@ class HoldingsForm extends React.Component {
               id="accordion07"
               onToggle={this.handleAccordionToggle}
               label={formatMsg({ id: 'ui-inventory.receivingHistory' })}
-            />
+            >
+              <RepeatableField
+                name="receivingHistory.entries"
+                label="Receiving history"
+                addButtonId="clickable-add-historyentry"
+                template={[
+                  {
+                    label: 'Public display',
+                    name: 'publicDisplay',
+                    component: Checkbox,
+                  },
+                  {
+                    label: 'Enumeration',
+                    name: 'enumeration',
+                    component: TextField,
+                  },
+                  {
+                    label: 'Chronology',
+                    name: 'chronology',
+                    component: TextField,
+                  },
+                ]}
+              />
+            </Accordion>
           </Pane>
         </Paneset>
       </form>
